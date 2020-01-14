@@ -57,5 +57,10 @@ class ArrayUtilTest {
         
         assertArrayEquals(sps, products);
 	}
+	/*void testprintTriplets() {
+		int[] data= {2,3,4,5,7};
+		
+		
+	}*/
 	
 }

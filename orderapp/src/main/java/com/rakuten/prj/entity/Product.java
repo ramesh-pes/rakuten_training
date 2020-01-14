@@ -1,10 +1,22 @@
 package com.rakuten.prj.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="products")
 public class Product implements Comparable<Product> {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private double price;
 	private String category;
+	
+	private int qty;
 
 	public Product() {
 	}
@@ -47,6 +59,22 @@ public class Product implements Comparable<Product> {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+
+	/**
+	 * @return the qty
+	 */
+	public int getQty() {
+		return qty;
+	}
+
+	/**
+	 * @param qty the qty to set
+	 */
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	
 
 	@Override
 	public int compareTo(Product o) {
@@ -55,8 +83,10 @@ public class Product implements Comparable<Product> {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + "]";
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + ", qty=" + qty
+				+ "]";
 	}
+	
 
 	@Override
 	public int hashCode() {
@@ -68,6 +98,7 @@ public class Product implements Comparable<Product> {
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + qty;
 		return result;
 	}
 
@@ -93,6 +124,8 @@ public class Product implements Comparable<Product> {
 		} else if (!name.equals(other.name))
 			return false;
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+			return false;
+		if (qty != other.qty)
 			return false;
 		return true;
 	}

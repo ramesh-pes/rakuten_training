@@ -1,6 +1,10 @@
 package com.rakuten.prj.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import com.rakuten.prj.entity.Triplet;
 
 public class ArrayUtil {
 	public static int getSum(int[] data) {
@@ -35,5 +39,25 @@ public class ArrayUtil {
 				}
 			}
 		}
+	}
+	public static List<Triplet> printTriplets(int[] data) {
+		List<Triplet> tri=new ArrayList<>();
+		int sum=0;
+		//int sum2=0;
+		for (int i = 0; i < data.length; i++) {
+			for (int j = i+1; j < data.length; j++) {
+				sum=data[i]+data[j];
+				for (int k = 0; k < data.length; k++) {
+					if(sum == data[k]) {
+						tri.add(new Triplet(data[i],data[j],sum));
+					}
+				}
+				//tri.add(new Triplet(data[i],sum,data[i]+sum));
+			}
+		}
+		//Triplet e =new Triplet(1,2,5);
+		
+		return tri;
+		
 	}
 }
